@@ -6,12 +6,27 @@ app = Flask(__name__)
 # Đường dẫn đến file emails.txt
 EMAIL_FILE = 'emails.txt'
 
+# Lấy secret key từ biến môi trường hoặc mặc định là 'htadz'
+SECRET_KEY = os.environ.get('API_KEY', 'htadz')
+
+# Endpoint kiểm tra API
+@app.route('/', methods=['GET'])
+def health_check():
+    return jsonify({'status': 'API is running'})
+
 @app.route('/api/email', methods=['GET'])
 def get_email():
-    # Lấy tham số email từ query string
+    # Lấy tham số key và email từ query string
+    provided_key = request.args.get('key')
     email_index = request.args.get('email', type=int)
-    
-    # Kiểm tra nếu tham số email không được cung cấp hoặc không phải số
+
+    # Kiểm tra key trước
+    if provided_key is None:
+        return jsonify({'error': 'Missing API key. Please provide ?key=<your_key>'}), 401
+    if provided_key != SECRET_KEY:
+        return jsonify({'error': 'Invalid API key'}), 401
+
+    # Kiểm tra tham số email
     if email_index is None:
         return jsonify({'error': 'Please provide a valid email index using ?email=<number>'}), 400
     
@@ -34,5 +49,4 @@ def get_email():
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
 
 if __name__ == '__main__':
-    # Chạy ứng dụng với host='0.0.0.0' để Render có thể truy cập
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
