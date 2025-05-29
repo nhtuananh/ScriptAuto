@@ -6,8 +6,13 @@ app = Flask(__name__)
 # Đường dẫn đến file emails.txt
 EMAIL_FILE = 'emails.txt'
 
+<<<<<<< HEAD
 # Lấy secret key từ biến môi trường hoặc mặc định là 'htadz'
 SECRET_KEY = os.environ.get('API_KEY', 'htadz')
+=======
+# Lấy secret key từ biến môi trường hoặc mặc định
+SECRET_KEY = os.environ.get('API_KEY', 'htadz')  # Thay 'your_secret_key' bằng giá trị mặc định nếu cần
+>>>>>>> aa55d18f9b30a980e35748114a8b09af4c325ddd
 
 # Endpoint kiểm tra API
 @app.route('/', methods=['GET'])
@@ -49,4 +54,8 @@ def get_email():
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+=======
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+>>>>>>> aa55d18f9b30a980e35748114a8b09af4c325ddd
