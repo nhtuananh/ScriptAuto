@@ -34,14 +34,14 @@ def get_email():
     try:
         if not os.path.exists(EMAIL_FILE):
             return jsonify({'error': 'Emails file not found'}), 404
-            
+        
         with open(EMAIL_FILE, 'r', encoding='utf-8') as file:
             emails = [line.strip() for line in file if line.strip()]
         
         # Kiểm tra nếu index hợp lệ
         if email_index < 1 or email_index > len(emails):
             return jsonify({'error': f'Email index out of range. Valid range: 1 to {len(emails)}'}), 400
-            
+        
         # Trả về email tại dòng tương ứng (index bắt đầu từ 1)
         return jsonify({'email': emails[email_index - 1]})
     
