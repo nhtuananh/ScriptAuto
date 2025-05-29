@@ -49,9 +49,9 @@ def get_email():
     except Exception as e:
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
 
-# Endpoint xóa email
-@app.route('/api/email/delete', methods=['DELETE'])
-def delete_email():
+# Endpoint xóa email bằng GET
+@app.route('/api/email/remove', methods=['GET'])
+def remove_email():
     # Lấy tham số key và email từ query string
     provided_key = request.args.get('key')
     email_index = request.args.get('email', type=int)
@@ -86,7 +86,7 @@ def delete_email():
             for email in emails:
                 file.write(email + '\n')
         
-        return jsonify({'message': f'Email {deleted_email} deleted successfully'})
+        return jsonify({'message': f'Email {deleted_email} removed successfully'})
     
     except Exception as e:
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
