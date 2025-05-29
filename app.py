@@ -7,7 +7,7 @@ app = Flask(__name__)
 EMAIL_FILE = 'emails.txt'
 
 # Lấy secret key từ biến môi trường hoặc mặc định là 'htadz'
-SECRET_KEY = os.environ.get('API_KEY', 'htadz')
+SECRET_KEY = os.environ.get('API_KEY', 'htadzhehe')
 
 # Endpoint kiểm tra API
 @app.route('/', methods=['GET'])
