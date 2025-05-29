@@ -86,7 +86,7 @@ def remove_email():
             for email in emails:
                 file.write(email + '\n')
         
-        return jsonify({'message': f'Email {deleted_email} removed successfully'})
+        return jsonify({'message': f'Email removed successfully'})
     
     except Exception as e:
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
