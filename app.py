@@ -72,7 +72,7 @@ def get_email():
         if not os.path.exists(STT_FILE):
             return jsonify({'error': 'Emails file not found'}), 404
             
-        with open(EMAIL_FILE, 'r', encoding='utf-8') as file:
+        with open(STT_FILE, 'r', encoding='utf-8') as file:
             emails = [line.strip() for line in file if line.strip()]
         
         # Kiểm tra nếu index hợp lệ
@@ -149,7 +149,7 @@ def remove_email():
         if not os.path.exists(STT_FILE):
             return jsonify({'error': 'Emails file not found'}), 404
             
-        with open(EMAIL_FILE, 'r', encoding='utf-8') as file:
+        with open(STT_FILE, 'r', encoding='utf-8') as file:
             emails = [line.strip() for line in file if line.strip()]
         
         # Kiểm tra nếu index hợp lệ
