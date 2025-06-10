@@ -52,7 +52,7 @@ def get_email():
 
 # Endpoint lấy stt
 @app.route('/api/stt', methods=['GET'])
-def get_email():
+def get_stt():
     # Lấy tham số key và email từ query string
     provided_key = request.args.get('key')
     email_index = request.args.get('email', type=int)
@@ -129,7 +129,7 @@ def remove_email():
 
 # Endpoint xóa stt bằng GET
 @app.route('/api/stt/remove', methods=['GET'])
-def remove_email():
+def remove_stt():
     # Lấy tham số key và email từ query string
     provided_key = request.args.get('key')
     email_index = request.args.get('email', type=int)
