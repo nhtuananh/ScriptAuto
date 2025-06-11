@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Đường dẫn đến file emails.txt
 EMAIL_FILE = 'emails.txt'
-STT_FILE = 'emails.txt'
+STT_FILE = 'stt.txt'
 
 # Lấy secret key từ biến môi trường hoặc mặc định là 'htadz'
 SECRET_KEY = os.environ.get('API_KEY', 'htadzhehe')
