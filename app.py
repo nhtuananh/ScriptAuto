@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-# Đường dẫn đến file emails.txt
+# Đường dẫn đến file emails.txt và stt.txt
 EMAIL_FILE = 'emails.txt'
 STT_FILE = 'stt.txt'
 
@@ -70,17 +70,17 @@ def get_stt():
     # Đọc file stt.txt
     try:
         if not os.path.exists(STT_FILE):
-            return jsonify({'error': 'Emails file not found'}), 404
+            return jsonify({'error': 'STT file not found'}), 404
             
         with open(STT_FILE, 'r', encoding='utf-8') as file:
-            emails = [line.strip() for line in file if line.strip()]
+            stts = [line.strip() for line in file if line.strip()]
         
         # Kiểm tra nếu index hợp lệ
-        if email_index < 1 or email_index > len(emails):
-            return jsonify({'error': f'Email index out of range. Valid range: 1 to {len(emails)}'}), 400
+        if email_index < 1 or email_index > len(stts):
+            return jsonify({'error': f'STT index out of range. Valid range: 1 to {len(stts)}'}), 400
             
-        # Trả về email tại dòng tương ứng (index bắt đầu từ 1)
-        return jsonify({'email': emails[email_index - 1]})
+        # Trả về stt tại dòng tương ứng (index bắt đầu từ 1)
+        return jsonify({'stt': stts[email_index - 1]})
     
     except Exception as e:
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
@@ -147,24 +147,24 @@ def remove_stt():
     # Đọc file stt.txt
     try:
         if not os.path.exists(STT_FILE):
-            return jsonify({'error': 'Emails file not found'}), 404
+            return jsonify({'error': 'STT file not found'}), 404
             
         with open(STT_FILE, 'r', encoding='utf-8') as file:
-            emails = [line.strip() for line in file if line.strip()]
+            stts = [line.strip() for line in file if line.strip()]
         
         # Kiểm tra nếu index hợp lệ
-        if email_index < 1 or email_index > len(emails):
-            return jsonify({'error': f'Email index out of range. Valid range: 1 to {len(emails)}'}), 400
+        if email_index < 1 or email_index > len(stts):
+            return jsonify({'error': f'STT index out of range. Valid range: 1 to {len(stts)}'}), 400
             
-        # Xóa email tại dòng tương ứng
-        deleted_email = emails.pop(email_index - 1)
+        # Xóa stt tại dòng tương ứng
+        deleted_stt = stts.pop(email_index - 1)
         
-        # Ghi lại danh sách email vào file
-        with open(EMAIL_FILE, 'w', encoding='utf-8') as file:
-            for email in emails:
-                file.write(email + '\n')
+        # Ghi lại danh sách stt vào file
+        with open(STT_FILE, 'w', encoding='utf-8') as file:
+            for stt in stts:
+                file.write(stt + '\n')
         
-        return jsonify({'message': f'Email removed successfully'})
+        return jsonify({'message': f'STT removed successfully'})
     
     except Exception as e:
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
