@@ -1,8 +1,3 @@
-vps502
-vps503
-vps504
-vps505
-vps506
 vps507
 vps508
 vps509
